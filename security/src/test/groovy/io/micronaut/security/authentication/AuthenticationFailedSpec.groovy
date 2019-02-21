@@ -19,9 +19,18 @@ import spock.lang.Specification
 
 class AuthenticationFailedSpec extends Specification {
 
-    def "createMessage generates a Title Case string"() {
+    def "constructor generates a Title Case string"() {
         expect:
-        new AuthenticationFailed()
-                .createMessage(AuthenticationFailureReason.USER_NOT_FOUND) == 'User Not Found'
+        new AuthenticationFailed(AuthenticationFailureReason.USER_NOT_FOUND)
+                .getMessage().get() == 'User Not Found'
+    }
+
+    def "getReason returns the failure reason"() {
+        when:
+        def failure = new AuthenticationFailed(AuthenticationFailureReason.ACCOUNT_EXPIRED)
+
+        then:
+        failure.getReason() == AuthenticationFailureReason.ACCOUNT_EXPIRED
+        failure.getMessage().get() == 'Account Expired'
     }
 }

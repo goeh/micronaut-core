@@ -65,6 +65,16 @@ public class AuthenticationFailed implements AuthenticationResponse {
     }
 
     /**
+     * Get reason for authentication failure.
+     *
+     * @return Failure reason
+     * @since 1.1
+     */
+    public AuthenticationFailureReason getReason() {
+        return authenticationFailure;
+    }
+
+    /**
      * message getter.
      * @return Failure message
      */
